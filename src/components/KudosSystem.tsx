@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Heart, Send, User } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 const KUDOS_TAGS = ['Teamwork', 'Innovation', 'Helping Hand', 'Leadership', 'Bug Hunter'];
 

@@ -1,4 +1,4 @@
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { Award } from 'lucide-react';
 import MoodTracker from '../components/MoodTracker';
 import KudosSystem from '../components/KudosSystem';

@@ -16,7 +16,8 @@ export const MOCK_USER: User = {
   badges: ['Early Bird', 'Team Player'],
 };
 
-export const login = async (_email: string): Promise<User> => {
+export const login = async (email: string): Promise<User> => {
+  console.log('Logging in with:', email);
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(MOCK_USER);

@@ -1,4 +1,4 @@
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { Navigate, Link, Outlet, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Smile, Trophy, LogOut } from 'lucide-react';
 import clsx from 'clsx';
