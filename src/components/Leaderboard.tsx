@@ -14,9 +14,9 @@ export default function Leaderboard() {
       <div className="p-6 border-b border-gray-100 bg-gradient-to-r from-yellow-50 to-orange-50">
          <div className="flex items-center space-x-2 mb-2">
              <Trophy className="text-yellow-600" fill="currentColor" />
-             <h3 className="font-bold text-gray-900">Leaderboard</h3>
+             <h3 className="font-bold text-gray-900">Tabla de Posiciones</h3>
          </div>
-         <p className="text-sm text-gray-600">Top contributors this month</p>
+         <p className="text-sm text-gray-600">Top contribuidores del mes</p>
       </div>
       
       <div className="divide-y divide-gray-50">
@@ -39,7 +39,7 @@ export default function Leaderboard() {
                         </div>
                         <div>
                             <p className="font-medium text-gray-900">{user.name}</p>
-                            <p className="text-xs text-green-600 font-medium">{user.change} pts today</p>
+                            <p className="text-xs text-green-600 font-medium">{user.change} pts hoy</p>
                         </div>
                     </div>
                     <div className="font-bold text-gray-900">
@@ -51,7 +51,7 @@ export default function Leaderboard() {
       </div>
       
       <div className="p-4 text-center border-t border-gray-100">
-          <button className="text-sm text-blue-600 font-medium hover:text-blue-700">View Full Rankings</button>
+          <button className="text-sm text-blue-600 font-medium hover:text-blue-700">Ver Ranking Completo</button>
       </div>
     </div>
   );

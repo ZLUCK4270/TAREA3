@@ -2,13 +2,13 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { TrendingUp } from 'lucide-react';
 
 const data = [
-  { name: 'Mon', mood: 3.5 },
-  { name: 'Tue', mood: 4.0 },
-  { name: 'Wed', mood: 3.8 },
-  { name: 'Thu', mood: 4.2 },
-  { name: 'Fri', mood: 4.5 },
-  { name: 'Sat', mood: 4.8 },
-  { name: 'Sun', mood: 4.7 },
+  { name: 'Lun', mood: 3.5 },
+  { name: 'Mar', mood: 4.0 },
+  { name: 'Mié', mood: 3.8 },
+  { name: 'Jue', mood: 4.2 },
+  { name: 'Vie', mood: 4.5 },
+  { name: 'Sáb', mood: 4.8 },
+  { name: 'Dom', mood: 4.7 },
 ];
 
 export default function TeamMoodChart() {
@@ -17,9 +17,9 @@ export default function TeamMoodChart() {
       <div className="p-6 border-b border-gray-100">
          <div className="flex items-center space-x-2 mb-2">
              <TrendingUp className="text-blue-500" />
-             <h3 className="font-bold text-gray-900">Team Mood Trends</h3>
+             <h3 className="font-bold text-gray-900">Tendencia de Ánimo del Equipo</h3>
          </div>
-         <p className="text-sm text-gray-600">Weekly average mood score</p>
+         <p className="text-sm text-gray-600">Promedio semanal de ánimo</p>
       </div>
       
       <div className="p-4 h-64">

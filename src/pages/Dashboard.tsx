@@ -9,17 +9,17 @@ export default function Dashboard() {
   const { user } = useAuth();
 
   const activities = [
-    { id: 1, user: 'Maria García', action: 'sent kudos to', target: 'Juan Perez', type: 'kudos', time: '2h ago' },
-    { id: 2, user: 'Juan Perez', action: 'reached a streak of', target: '5 days', type: 'streak', time: '4h ago' },
-    { id: 3, user: 'Ana Lopez', action: 'is feeling', target: 'Happy', type: 'mood', time: '5h ago' },
+    { id: 1, user: 'Maria García', action: 'envió kudos a', target: 'Juan Perez', type: 'kudos', time: 'hace 2h' },
+    { id: 2, user: 'Juan Perez', action: 'alcanzó una racha de', target: '5 días', type: 'streak', time: 'hace 4h' },
+    { id: 3, user: 'Ana Lopez', action: 'se siente', target: 'Feliz', type: 'mood', time: 'hace 5h' },
   ];
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-           <h1 className="text-3xl font-bold text-gray-900">Hello, {user?.name}! 👋</h1>
-           <p className="text-gray-500">Here is what's happening with your team today.</p>
+           <h1 className="text-3xl font-bold text-gray-900">¡Hola, {user?.name}! 👋</h1>
+           <p className="text-gray-500">Aquí está lo que pasa con tu equipo hoy.</p>
         </div>
         <div className="flex space-x-4">
             <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex items-center space-x-3">
@@ -27,7 +27,7 @@ export default function Dashboard() {
                     <Award size={24} />
                 </div>
                 <div>
-                    <p className="text-sm text-gray-500">Total Points</p>
+                    <p className="text-sm text-gray-500">Puntos Totales</p>
                     <p className="text-xl font-bold text-gray-900">{user?.points}</p>
                 </div>
             </div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
           </div>
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
              <div className="p-6 border-b border-gray-100">
-                 <h3 className="font-bold text-gray-900">Team Activity</h3>
+                 <h3 className="font-bold text-gray-900">Actividad del Equipo</h3>
              </div>
              <div className="divide-y divide-gray-100">
                  {activities.map((activity) => (

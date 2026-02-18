@@ -1,43 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { Smile, Frown, Meh, ThumbsUp, Heart } from 'lucide-react';
 import clsx from 'clsx';
 
 const MOODS = [
-  { icon: Frown, label: 'Stressed', color: 'text-red-500', bg: 'bg-red-100' },
-  { icon: Meh, label: 'Okay', color: 'text-yellow-500', bg: 'bg-yellow-100' },
-  { icon: Smile, label: 'Good', color: 'text-blue-500', bg: 'bg-blue-100' },
-  { icon: ThumbsUp, label: 'Great', color: 'text-green-500', bg: 'bg-green-100' },
-  { icon: Heart, label: 'Amazing', color: 'text-purple-500', bg: 'bg-purple-100' },
+  { icon: Frown, label: 'Estresado', color: 'text-red-500', bg: 'bg-red-100' },
+  { icon: Meh, label: 'Normal', color: 'text-yellow-500', bg: 'bg-yellow-100' },
+  { icon: Smile, label: 'Bien', color: 'text-blue-500', bg: 'bg-blue-100' },
+  { icon: ThumbsUp, label: 'Genial', color: 'text-green-500', bg: 'bg-green-100' },
+  { icon: Heart, label: 'Increíble', color: 'text-purple-500', bg: 'bg-purple-100' },
 ];
 
 export default function MoodTracker() {
   const { addPoints } = useAuth();
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-
+  
+  // Handle mood selection
   const handleMoodSelect = (label: string) => {
     setSelectedMood(label);
   };
 
+  // Submit handler
   const handleSubmit = () => {
     if (selectedMood) {
-      // Here we would send data to backend
       addPoints(10);
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
-      setSelectedMood(null);
     }
   };
 
+  // Auto-reset after submission with cleanup
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (submitted) {
+      timer = setTimeout(() => {
+        setSubmitted(false);
+        setSelectedMood(null);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [submitted]);
+
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <h3 className="font-bold text-gray-900 mb-4">How are you feeling today?</h3>
+      <h3 className="font-bold text-gray-900 mb-4">¿Cómo te sientes hoy?</h3>
       
       {submitted ? (
         <div className="text-center py-8 text-green-600 animate-fade-in">
-          <p className="font-medium">Thanks for sharing! 🌟</p>
-          <p className="text-sm text-gray-500">+10 points earned</p>
+          <p className="font-medium">¡Gracias por compartir! 🌟</p>
+          <p className="text-sm text-gray-500">+10 puntos ganados</p>
         </div>
       ) : (
         <>
@@ -73,7 +84,7 @@ export default function MoodTracker() {
             disabled={!selectedMood}
             className="w-full py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            Log Mood
+            Registrar Ánimo
           </button>
         </>
       )}

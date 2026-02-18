@@ -12,9 +12,9 @@ export default function DashboardLayout() {
   }
 
   const navItems = [
-    { icon: LayoutDashboard, label: 'Overview', path: '/dashboard' },
-    { icon: Smile, label: 'Mood Tracker', path: '/dashboard/mood' },
-    { icon: Trophy, label: 'Leaderboard', path: '/dashboard/leaderboard' },
+    { icon: LayoutDashboard, label: 'Resumen', path: '/dashboard' },
+    { icon: Smile, label: 'Estado de Ánimo', path: '/dashboard/mood' },
+    { icon: Trophy, label: 'Tabla de Posiciones', path: '/dashboard/leaderboard' },
   ];
 
   return (
@@ -54,7 +54,7 @@ export default function DashboardLayout() {
              </div>
              <div>
                 <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                <p className="text-xs text-gray-500">{user?.role}</p>
+                <p className="text-xs text-gray-500">{user?.role === 'manager' ? 'Gerente' : 'Empleado'}</p>
              </div>
           </div>
           <button
@@ -62,7 +62,7 @@ export default function DashboardLayout() {
             className="flex items-center space-x-3 px-4 py-2 w-full text-red-600 hover:bg-red-50 rounded-lg transition-colors"
           >
             <LogOut size={20} />
-            <span>Sign Out</span>
+            <span>Cerrar Sesión</span>
           </button>
         </div>
       </aside>
