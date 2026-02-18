@@ -1,5 +1,9 @@
 import { useAuth } from '../context/AuthContext';
-import { Smile, Heart, TrendingUp, Award } from 'lucide-react';
+import { Award } from 'lucide-react';
+import MoodTracker from '../components/MoodTracker';
+import KudosSystem from '../components/KudosSystem';
+import Leaderboard from '../components/Leaderboard';
+import TeamMoodChart from '../components/TeamMoodChart';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -30,62 +34,46 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg transform transition hover:scale-[1.02] cursor-pointer">
-           <div className="flex justify-between items-start mb-4">
-              <div className="p-2 bg-white/20 rounded-lg"><Smile size={24} /></div>
-              <span className="text-xs bg-white/20 px-2 py-1 rounded">Daily</span>
-           </div>
-           <h3 className="text-xl font-bold mb-1">Log Your Mood</h3>
-           <p className="text-blue-100 text-sm">How are you feeling today?</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Mood Tracker Component takes up one slot but we can make it span or check layout */}
+        <div className="md:col-span-2 lg:col-span-1">
+             <MoodTracker />
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg transform transition hover:scale-[1.02] cursor-pointer">
-           <div className="flex justify-between items-start mb-4">
-              <div className="p-2 bg-white/20 rounded-lg"><Heart size={24} /></div>
-              <span className="text-xs bg-white/20 px-2 py-1 rounded">Appreciate</span>
-           </div>
-           <h3 className="text-xl font-bold mb-1">Send Kudos</h3>
-           <p className="text-purple-100 text-sm">Recognize a colleague's work.</p>
+        <div className="md:col-span-2 lg:col-span-1">
+             <KudosSystem />
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-           <div className="flex items-center space-x-3 mb-4">
-              <TrendingUp className="text-green-500" />
-              <h3 className="font-bold text-gray-900">Your Badges</h3>
-           </div>
-           <div className="flex flex-wrap gap-2">
-              {user?.badges.map((badge, index) => (
-                  <span key={index} className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
-                      {badge}
-                  </span>
-              ))}
-              <span className="px-3 py-1 border border-dashed border-gray-300 text-gray-400 rounded-full text-sm">+ Add more</span>
-           </div>
+        <div className="md:col-span-2 lg:col-span-1">
+             <Leaderboard />
         </div>
       </div>
 
-      {/* Activity Feed */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-         <div className="p-6 border-b border-gray-100">
-             <h3 className="font-bold text-gray-900">Team Activity</h3>
-         </div>
-         <div className="divide-y divide-gray-100">
-             {activities.map((activity) => (
-                 <div key={activity.id} className="p-4 flex items-center space-x-4 hover:bg-gray-50 transition-colors">
-                     <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-500">
-                         {activity.user.charAt(0)}
+      {/* Team Stats & Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+              <TeamMoodChart />
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+             <div className="p-6 border-b border-gray-100">
+                 <h3 className="font-bold text-gray-900">Team Activity</h3>
+             </div>
+             <div className="divide-y divide-gray-100">
+                 {activities.map((activity) => (
+                     <div key={activity.id} className="p-4 flex items-center space-x-4 hover:bg-gray-50 transition-colors">
+                         <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-500">
+                             {activity.user.charAt(0)}
+                         </div>
+                         <div className="flex-1">
+                             <p className="text-sm text-gray-900">
+                                 <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.target}</span>
+                             </p>
+                             <p className="text-xs text-gray-500">{activity.time}</p>
+                         </div>
                      </div>
-                     <div className="flex-1">
-                         <p className="text-sm text-gray-900">
-                             <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.target}</span>
-                         </p>
-                         <p className="text-xs text-gray-500">{activity.time}</p>
-                     </div>
-                 </div>
-             ))}
-         </div>
+                 ))}
+             </div>
+          </div>
       </div>
     </div>
   );
